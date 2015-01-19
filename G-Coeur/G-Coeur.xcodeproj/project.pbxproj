@@ -1,0 +1,458 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FAAC37631A6DA2170029C614 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC37621A6DA2170029C614 /* AppDelegate.swift */; };
+		FAAC37681A6DA2170029C614 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAAC37661A6DA2170029C614 /* Main.storyboard */; };
+		FAAC376A1A6DA2170029C614 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAAC37691A6DA2170029C614 /* Images.xcassets */; };
+		FAAC376D1A6DA2170029C614 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAAC376B1A6DA2170029C614 /* LaunchScreen.xib */; };
+		FAAC37791A6DA2170029C614 /* G_CoeurTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC37781A6DA2170029C614 /* G_CoeurTests.swift */; };
+		FAAC37861A6DA3660029C614 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC37851A6DA3660029C614 /* MenuController.swift */; };
+		FAAC37881A6DAADE0029C614 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC37871A6DAADE0029C614 /* Repository.swift */; };
+		FAAC378A1A6DACEC0029C614 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC37891A6DACEC0029C614 /* NetworkController.swift */; };
+		FAAC378C1A6DAFA20029C614 /* RepositoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC378B1A6DAFA20029C614 /* RepositoryController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FAAC37731A6DA2170029C614 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAAC37551A6DA2170029C614 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FAAC375C1A6DA2170029C614;
+			remoteInfo = "G-Coeur";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FAAC375D1A6DA2170029C614 /* G-Coeur.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "G-Coeur.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAAC37611A6DA2170029C614 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAAC37621A6DA2170029C614 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FAAC37671A6DA2170029C614 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FAAC37691A6DA2170029C614 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		FAAC376C1A6DA2170029C614 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		FAAC37721A6DA2170029C614 /* G-CoeurTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "G-CoeurTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAAC37771A6DA2170029C614 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAAC37781A6DA2170029C614 /* G_CoeurTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = G_CoeurTests.swift; sourceTree = "<group>"; };
+		FAAC37851A6DA3660029C614 /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		FAAC37871A6DAADE0029C614 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		FAAC37891A6DACEC0029C614 /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
+		FAAC378B1A6DAFA20029C614 /* RepositoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FAAC375A1A6DA2170029C614 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAAC376F1A6DA2170029C614 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FAAC37541A6DA2170029C614 = {
+			isa = PBXGroup;
+			children = (
+				FAAC375F1A6DA2170029C614 /* G-Coeur */,
+				FAAC37751A6DA2170029C614 /* G-CoeurTests */,
+				FAAC375E1A6DA2170029C614 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FAAC375E1A6DA2170029C614 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FAAC375D1A6DA2170029C614 /* G-Coeur.app */,
+				FAAC37721A6DA2170029C614 /* G-CoeurTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FAAC375F1A6DA2170029C614 /* G-Coeur */ = {
+			isa = PBXGroup;
+			children = (
+				FAAC37841A6DA3340029C614 /* Controller */,
+				FAAC37831A6DA32D0029C614 /* View */,
+				FAAC37821A6DA3230029C614 /* Model */,
+				FAAC37621A6DA2170029C614 /* AppDelegate.swift */,
+				FAAC37661A6DA2170029C614 /* Main.storyboard */,
+				FAAC37691A6DA2170029C614 /* Images.xcassets */,
+				FAAC376B1A6DA2170029C614 /* LaunchScreen.xib */,
+				FAAC37601A6DA2170029C614 /* Supporting Files */,
+			);
+			path = "G-Coeur";
+			sourceTree = "<group>";
+		};
+		FAAC37601A6DA2170029C614 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FAAC37611A6DA2170029C614 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FAAC37751A6DA2170029C614 /* G-CoeurTests */ = {
+			isa = PBXGroup;
+			children = (
+				FAAC37781A6DA2170029C614 /* G_CoeurTests.swift */,
+				FAAC37761A6DA2170029C614 /* Supporting Files */,
+			);
+			path = "G-CoeurTests";
+			sourceTree = "<group>";
+		};
+		FAAC37761A6DA2170029C614 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FAAC37771A6DA2170029C614 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FAAC37821A6DA3230029C614 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FAAC37871A6DAADE0029C614 /* Repository.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		FAAC37831A6DA32D0029C614 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		FAAC37841A6DA3340029C614 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FAAC37851A6DA3660029C614 /* MenuController.swift */,
+				FAAC37891A6DACEC0029C614 /* NetworkController.swift */,
+				FAAC378B1A6DAFA20029C614 /* RepositoryController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FAAC375C1A6DA2170029C614 /* G-Coeur */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAAC377C1A6DA2170029C614 /* Build configuration list for PBXNativeTarget "G-Coeur" */;
+			buildPhases = (
+				FAAC37591A6DA2170029C614 /* Sources */,
+				FAAC375A1A6DA2170029C614 /* Frameworks */,
+				FAAC375B1A6DA2170029C614 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "G-Coeur";
+			productName = "G-Coeur";
+			productReference = FAAC375D1A6DA2170029C614 /* G-Coeur.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FAAC37711A6DA2170029C614 /* G-CoeurTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAAC377F1A6DA2170029C614 /* Build configuration list for PBXNativeTarget "G-CoeurTests" */;
+			buildPhases = (
+				FAAC376E1A6DA2170029C614 /* Sources */,
+				FAAC376F1A6DA2170029C614 /* Frameworks */,
+				FAAC37701A6DA2170029C614 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FAAC37741A6DA2170029C614 /* PBXTargetDependency */,
+			);
+			name = "G-CoeurTests";
+			productName = "G-CoeurTests";
+			productReference = FAAC37721A6DA2170029C614 /* G-CoeurTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FAAC37551A6DA2170029C614 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Brian Ledbetter";
+				TargetAttributes = {
+					FAAC375C1A6DA2170029C614 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					FAAC37711A6DA2170029C614 = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = FAAC375C1A6DA2170029C614;
+					};
+				};
+			};
+			buildConfigurationList = FAAC37581A6DA2170029C614 /* Build configuration list for PBXProject "G-Coeur" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FAAC37541A6DA2170029C614;
+			productRefGroup = FAAC375E1A6DA2170029C614 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FAAC375C1A6DA2170029C614 /* G-Coeur */,
+				FAAC37711A6DA2170029C614 /* G-CoeurTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FAAC375B1A6DA2170029C614 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAAC37681A6DA2170029C614 /* Main.storyboard in Resources */,
+				FAAC376D1A6DA2170029C614 /* LaunchScreen.xib in Resources */,
+				FAAC376A1A6DA2170029C614 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAAC37701A6DA2170029C614 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FAAC37591A6DA2170029C614 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAAC378C1A6DAFA20029C614 /* RepositoryController.swift in Sources */,
+				FAAC378A1A6DACEC0029C614 /* NetworkController.swift in Sources */,
+				FAAC37861A6DA3660029C614 /* MenuController.swift in Sources */,
+				FAAC37631A6DA2170029C614 /* AppDelegate.swift in Sources */,
+				FAAC37881A6DAADE0029C614 /* Repository.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAAC376E1A6DA2170029C614 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAAC37791A6DA2170029C614 /* G_CoeurTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FAAC37741A6DA2170029C614 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FAAC375C1A6DA2170029C614 /* G-Coeur */;
+			targetProxy = FAAC37731A6DA2170029C614 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FAAC37661A6DA2170029C614 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAAC37671A6DA2170029C614 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FAAC376B1A6DA2170029C614 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAAC376C1A6DA2170029C614 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FAAC377A1A6DA2170029C614 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FAAC377B1A6DA2170029C614 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FAAC377D1A6DA2170029C614 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "G-Coeur/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FAAC377E1A6DA2170029C614 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "G-Coeur/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		FAAC37801A6DA2170029C614 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "G-CoeurTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/G-Coeur.app/G-Coeur";
+			};
+			name = Debug;
+		};
+		FAAC37811A6DA2170029C614 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "G-CoeurTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/G-Coeur.app/G-Coeur";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FAAC37581A6DA2170029C614 /* Build configuration list for PBXProject "G-Coeur" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAAC377A1A6DA2170029C614 /* Debug */,
+				FAAC377B1A6DA2170029C614 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAAC377C1A6DA2170029C614 /* Build configuration list for PBXNativeTarget "G-Coeur" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAAC377D1A6DA2170029C614 /* Debug */,
+				FAAC377E1A6DA2170029C614 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		FAAC377F1A6DA2170029C614 /* Build configuration list for PBXNativeTarget "G-CoeurTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAAC37801A6DA2170029C614 /* Debug */,
+				FAAC37811A6DA2170029C614 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FAAC37551A6DA2170029C614 /* Project object */;
+}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>EB3A2387-E063-4897-8539-1FB06221615C</string>
+	<key>IDESourceControlProjectName</key>
+	<string>G-Coeur</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>246D4D36B77F3E0BDF59345DD0696A1B437CBEBE</key>
+		<string>https://github.com/BrianL3/G-Coeur.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>G-Coeur/G-Coeur.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>246D4D36B77F3E0BDF59345DD0696A1B437CBEBE</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/BrianL3/G-Coeur.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>246D4D36B77F3E0BDF59345DD0696A1B437CBEBE</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>246D4D36B77F3E0BDF59345DD0696A1B437CBEBE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>G-Coeur</string>
+		</dict>
+	</array>
+</dict>
+</plist>
