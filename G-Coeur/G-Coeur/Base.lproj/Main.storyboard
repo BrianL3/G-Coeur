@@ -16,17 +16,32 @@
                         <sections>
                             <tableViewSection headerTitle="Search" id="xuX-qa-7Rf">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="LBO-v3-pln">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="LBO-v3-pln">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LBO-v3-pln" id="F2N-GR-KFc">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Repositories" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cGG-By-kbr">
-                                                    <rect key="frame" x="8" y="8" width="502" height="30"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Repositories" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cGG-By-kbr">
+                                                    <rect key="frame" x="16" y="8" width="300" height="27"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="27" id="7KG-tZ-Lzl"/>
+                                                        <constraint firstAttribute="width" constant="300" id="D9b-S5-Whq"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                                 </textField>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="cGG-By-kbr" firstAttribute="top" secondItem="F2N-GR-KFc" secondAttribute="topMargin" id="HHg-m1-yaE"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="cGG-By-kbr" secondAttribute="trailing" constant="45" id="VSf-2l-B8H"/>
+                                                <constraint firstItem="cGG-By-kbr" firstAttribute="bottom" secondItem="F2N-GR-KFc" secondAttribute="bottomMargin" id="eFM-7X-ucm"/>
+                                                <constraint firstItem="cGG-By-kbr" firstAttribute="leading" secondItem="F2N-GR-KFc" secondAttribute="leadingMargin" constant="8" id="wjZ-JS-gyq"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="VSf-2l-B8H"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="9XB-Zf-e7m" kind="show" identifier="SEARCH_REPO" id="qDs-yq-Ken"/>
@@ -86,7 +101,7 @@
         <!--Repository Controller-->
         <scene sceneID="KRM-BW-0xF">
             <objects>
-                <viewController id="9XB-Zf-e7m" customClass="RepositoryController" customModule="G_Coeur" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="REPO_SEARCH" id="9XB-Zf-e7m" customClass="RepositoryController" customModule="G_Coeur" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pr2-pZ-GPF"/>
                         <viewControllerLayoutGuide type="bottom" id="wWm-Wb-Njo"/>
@@ -104,11 +119,25 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="REPO_CELL" id="G15-GB-6ix">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="REPO_CELL" textLabel="UFJ-bN-Q4j" detailTextLabel="Ppb-ai-cwi" style="IBUITableViewCellStyleValue2" id="G15-GB-6ix">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G15-GB-6ix" id="zk1-Ai-Ehs">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UFJ-bN-Q4j">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ppb-ai-cwi">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>

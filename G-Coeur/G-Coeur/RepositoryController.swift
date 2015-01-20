@@ -11,9 +11,8 @@ import UIKit
 class RepositoryController : UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
   
   @IBOutlet weak var searchBar: UISearchBar!
-    var incomingSearchTerm : String?
   
-  var networkController : NetworkController!
+  var incomingSearchTerm : String?
   
   var repos = [Repository]()
   
@@ -23,12 +22,26 @@ class RepositoryController : UIViewController, UITableViewDataSource, UITableVie
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    tableView.delegate = self
-    tableView.dataSource = self
+    //setting delegates and datasources
+    self.tableView.delegate = self
+    self.tableView.dataSource = self
     self.searchBar.delegate = self
     
-    searchBar.text = self.incomingSearchTerm
-    searchBar.becomeFirstResponder()
+    //if we got a search term from the previous VC, load it up
+    if incomingSearchTerm != nil {
+      searchBar.text = self.incomingSearchTerm
+      NetworkController.sharedNetworkController.fetchRepositoriesForSearchTerm(self.incomingSearchTerm!) { (returnedArray, error) -> () in
+        if error == nil {
+          self.repos = returnedArray!
+          self.tableView.reloadData()
+        }else{
+          println("returned an error")
+        }
+      }
+    } else {
+      // if we didn't get a search term, make the search bar the first responder
+      searchBar.becomeFirstResponder()
+    }
     
   }
   
@@ -37,6 +50,7 @@ class RepositoryController : UIViewController, UITableViewDataSource, UITableVie
     let cell = tableView.dequeueReusableCellWithIdentifier("REPO_CELL") as UITableViewCell
     let repo = repos[indexPath.row]
     cell.textLabel?.text = repo.name
+    cell.detailTextLabel?.text = repo.language
     return cell
   }
   
@@ -53,7 +67,7 @@ class RepositoryController : UIViewController, UITableViewDataSource, UITableVie
   func searchBarSearchButtonClicked(searchBar: UISearchBar) {
     tableView.reloadData()
     searchBar.resignFirstResponder()
-    networkController.fetchRepositoriesForSearchTerm(searchBar.text) { (returnedArray, error) -> () in
+    NetworkController.sharedNetworkController.fetchRepositoriesForSearchTerm(searchBar.text) { (returnedArray, error) -> () in
       if error == nil {
         println(searchBar.text)
         self.repos = returnedArray!

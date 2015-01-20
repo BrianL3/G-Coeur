@@ -14,11 +14,12 @@ class MenuController: UITableViewController, UITableViewDelegate, UITextFieldDel
   var repoSearch : String?
 
   
-  var networkController = NetworkController()
+
   
   
     override func viewDidLoad() {
-        super.viewDidLoad()
+      super.viewDidLoad()
+      self.repoTextField.delegate = self
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -27,10 +28,11 @@ class MenuController: UITableViewController, UITableViewDelegate, UITextFieldDel
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+  override func viewDidAppear(animated: Bool) {
+    if NetworkController.sharedNetworkController.accessToken == nil {
+      NetworkController.sharedNetworkController.requestAccessToken()
     }
+  }
 
     // MARK: - Table view data source
 
@@ -49,7 +51,6 @@ class MenuController: UITableViewController, UITableViewDelegate, UITextFieldDel
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "SEARCH_REPO"{
       let destinationVC = segue.destinationViewController as RepositoryController
-      destinationVC.networkController = self.networkController
       destinationVC.incomingSearchTerm = self.repoTextField.text?
     }
     
@@ -64,6 +65,17 @@ class MenuController: UITableViewController, UITableViewDelegate, UITextFieldDel
     self.repoSearch = repoTextField.text
    // self.prepareForSegue(<#segue: UIStoryboardSegue#>, sender: <#AnyObject?#>)
   }
+  
+  func textFieldShouldReturn(textField: UITextField) -> Bool {
+    self.repoSearch = repoTextField.text
+    repoTextField.resignFirstResponder()
+    let repoSearchVC = self.storyboard?.instantiateViewControllerWithIdentifier("REPO_SEARCH") as RepositoryController
+    repoSearchVC.incomingSearchTerm = repoTextField.text
+    self.navigationController?.pushViewController(repoSearchVC, animated: true)
+    return true
+  }
+  
+
 
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
