@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA71D3911A704AE20012CB77 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA71D3901A704AE20012CB77 /* User.swift */; };
+		FA71D3931A704CEA0012CB77 /* SearchUsersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA71D3921A704CEA0012CB77 /* SearchUsersController.swift */; };
+		FA71D3951A704DE90012CB77 /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA71D3941A704DE90012CB77 /* UserCollectionViewCell.swift */; };
+		FA71D3971A70602C0012CB77 /* UserDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA71D3961A70602C0012CB77 /* UserDetailController.swift */; };
+		FA71D3991A70666E0012CB77 /* ToUserDetailAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA71D3981A70666E0012CB77 /* ToUserDetailAnimationController.swift */; };
 		FAAC37631A6DA2170029C614 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC37621A6DA2170029C614 /* AppDelegate.swift */; };
 		FAAC37681A6DA2170029C614 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAAC37661A6DA2170029C614 /* Main.storyboard */; };
 		FAAC376A1A6DA2170029C614 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAAC37691A6DA2170029C614 /* Images.xcassets */; };
@@ -29,6 +34,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FA71D3901A704AE20012CB77 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		FA71D3921A704CEA0012CB77 /* SearchUsersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchUsersController.swift; sourceTree = "<group>"; };
+		FA71D3941A704DE90012CB77 /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
+		FA71D3961A70602C0012CB77 /* UserDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailController.swift; sourceTree = "<group>"; };
+		FA71D3981A70666E0012CB77 /* ToUserDetailAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToUserDetailAnimationController.swift; sourceTree = "<group>"; };
 		FAAC375D1A6DA2170029C614 /* G-Coeur.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "G-Coeur.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAAC37611A6DA2170029C614 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAAC37621A6DA2170029C614 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +72,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA71D38F1A704AB80012CB77 /* Animation Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FA71D3981A70666E0012CB77 /* ToUserDetailAnimationController.swift */,
+			);
+			name = "Animation Controllers";
+			sourceTree = "<group>";
+		};
 		FAAC37541A6DA2170029C614 = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				FAAC37871A6DAADE0029C614 /* Repository.swift */,
+				FA71D3901A704AE20012CB77 /* User.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -131,6 +150,7 @@
 		FAAC37831A6DA32D0029C614 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FA71D3941A704DE90012CB77 /* UserCollectionViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -138,9 +158,12 @@
 		FAAC37841A6DA3340029C614 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				FA71D38F1A704AB80012CB77 /* Animation Controllers */,
 				FAAC37851A6DA3660029C614 /* MenuController.swift */,
 				FAAC37891A6DACEC0029C614 /* NetworkController.swift */,
 				FAAC378B1A6DAFA20029C614 /* RepositoryController.swift */,
+				FA71D3921A704CEA0012CB77 /* SearchUsersController.swift */,
+				FA71D3961A70602C0012CB77 /* UserDetailController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -247,9 +270,14 @@
 			files = (
 				FAAC378C1A6DAFA20029C614 /* RepositoryController.swift in Sources */,
 				FAAC378A1A6DACEC0029C614 /* NetworkController.swift in Sources */,
+				FA71D3911A704AE20012CB77 /* User.swift in Sources */,
+				FA71D3971A70602C0012CB77 /* UserDetailController.swift in Sources */,
 				FAAC37861A6DA3660029C614 /* MenuController.swift in Sources */,
 				FAAC37631A6DA2170029C614 /* AppDelegate.swift in Sources */,
+				FA71D3951A704DE90012CB77 /* UserCollectionViewCell.swift in Sources */,
+				FA71D3931A704CEA0012CB77 /* SearchUsersController.swift in Sources */,
 				FAAC37881A6DAADE0029C614 /* Repository.swift in Sources */,
+				FA71D3991A70666E0012CB77 /* ToUserDetailAnimationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -32,6 +32,7 @@ class RepositoryController : UIViewController, UITableViewDataSource, UITableVie
       searchBar.text = self.incomingSearchTerm
       NetworkController.sharedNetworkController.fetchRepositoriesForSearchTerm(self.incomingSearchTerm!) { (returnedArray, error) -> () in
         if error == nil {
+          println("fired")
           self.repos = returnedArray!
           self.tableView.reloadData()
         }else{

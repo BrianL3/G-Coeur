@@ -24,6 +24,8 @@ class NetworkController{
   let clientID = "ffa5ddfc3f169df9305d"
   let accessTokenUserDefaultsKey = "accessToken"
   var accessToken : String?
+  
+  let imageQueue = NSOperationQueue()
 
   
   init(){
@@ -147,4 +149,110 @@ class NetworkController{
     dataTask.resume()
     */
   }
+  
+  func fetchReposForUser(userName: String, completionHandler: ([Repository]?, String?) -> Void){
+    ///users/:username/repos
+    let url = NSURL(string: "https://api.github.com/users/\(userName)/repos")
+    let request = NSMutableURLRequest(URL: url!)
+    request.setValue("token \(self.accessToken!)", forHTTPHeaderField: "Authorization")
+    let dataTask = self.urlSession.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+      if error == nil {
+        if let httpResponse = response as? NSHTTPURLResponse {
+          var repos = [Repository]()
+          switch httpResponse.statusCode {
+          case 200...299:
+            if let jsonArray = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [AnyObject]{
+              for object in jsonArray{
+                if let jsonDictionary = object as? [String : AnyObject]{
+                  let repo = Repository(jsonDictionary)
+                  repos.append(repo)
+                }
+              }
+            }
+            if (repos.count > 0) {
+              NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                completionHandler(repos, nil)
+              })
+            }else{
+              NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                completionHandler(nil, "No search results returned")
+              })
+            }
+          default:
+            println("something broke in NetworkController fetching repo search terms")
+            println("Status code was \(httpResponse.statusCode)")
+          }
+        }
+        
+      }
+    })
+    dataTask.resume()
+
+  }
+  
+// search for users with a name matching the searchTerm parameter
+  func fetchUsersForSearchTerm(searchTerm: String, completionHandler : ([User]?, String?) -> Void){
+    let url = NSURL(string: "https://api.github.com/search/users?q=\(searchTerm)")
+    let request = NSMutableURLRequest(URL: url!)
+    request.setValue("token \(self.accessToken!)", forHTTPHeaderField: "Authorization")
+    let dataTask = self.urlSession.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+      if error == nil{
+        if let httpResponse = response as? NSHTTPURLResponse {
+          var users = [User]()
+          switch httpResponse.statusCode {
+          case 200...299:
+            if let jsonDict = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [String : AnyObject] {
+              if let itemsArray = jsonDict["items"] as? [AnyObject]{
+                for object in itemsArray{
+                  if let jsonDict = object as? [String : AnyObject] {
+                    let user = User(jsonDictionary: jsonDict)
+                    users.append(user)
+                  }
+                }
+              }
+              
+            }
+            if (users.count > 0) {
+              NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                completionHandler(users, nil)
+              })
+            }else{
+              NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                completionHandler(nil, "No search results returned")
+              })
+            }
+          default:
+            println("something broke in NetworkController fetching users")
+            println("Status code was \(httpResponse.statusCode)")
+          }
+        }
+      }else{
+        let alert = UIAlertView(title: "Error", message: "Fetch Users for Search Term Returned an error!", delegate: self, cancelButtonTitle: "Shite!")
+      }
+    })
+    dataTask.resume()
+  }
+
+  // fetch a user's image from the URL
+  func fetchUserAvatar(url : NSURL, completionHandler : (image: UIImage?) -> Void){
+
+    self.imageQueue.addOperationWithBlock { () -> Void in
+      let data = NSData(contentsOfURL: url)
+      let image = UIImage(data: data!)
+      NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+        completionHandler(image: image)
+      })
+    }
+    
+ 
+  }
+  
 }
+
+
+
+
+
+
+
+
