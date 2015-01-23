@@ -19,11 +19,37 @@ class UserDetailController: UIViewController, UITableViewDataSource, UITableView
   
   @IBOutlet weak var tableView: UITableView!
 //MARK: ViewController Lifecycle
+  
     override func viewDidLoad() {
+      if self.user == nil{
+        NetworkController.sharedNetworkController.fetchAuthenticatedUser({ (users, error) -> () in
+          if error == nil{
+            println("fetch authenticated user fired wihout error in Menu Controller")
+            let userArray = users!
+            var currentUser = userArray[0] as User
+            NetworkController.sharedNetworkController.fetchUserAvatar(currentUser.avatarURL, completionHandler: { (image) -> Void in
+              currentUser.image = image
+            })
+            self.user = currentUser
+          }else{
+            println("detailedUserview call to fetchAuthenticatedUser failed")
+          }
+        })
+      }
         super.viewDidLoad()
+      if self.user != nil {
         self.avatarImageView.image = user.image!
         self.nameLabel.text = user.login
-      
+        //grab the user's repos
+        NetworkController.sharedNetworkController.fetchReposForUser(user.login, completionHandler: { (repos, error) -> Void in
+          if error == nil {
+            self.userRepos = repos!
+            self.tableView.reloadData()
+          }else{
+            println("returned an error")
+          }
+        })
+      }
       //set self as tableview delegate
       self.tableView.dataSource = self
       self.tableView.delegate = self
@@ -31,16 +57,7 @@ class UserDetailController: UIViewController, UITableViewDataSource, UITableView
       // changing color
       self.view.backgroundColor = UIColor.lightGrayColor()
         
-      //grab the user's repos
-      NetworkController.sharedNetworkController.fetchReposForUser(user.login, completionHandler: { (repos, error) -> Void in
-        if error == nil {
-          self.userRepos = repos!
-          self.tableView.reloadData()
-        }else{
-          println("returned an error")
-        }
 
-      })
     }
 
     override func didReceiveMemoryWarning() {

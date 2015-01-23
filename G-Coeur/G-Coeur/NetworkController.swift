@@ -246,6 +246,86 @@ class NetworkController{
     
  
   }
+  func fetchAuthenticatedUser(completionHandler: ([User]?, String?) -> ()){
+    //
+    let url = NSURL(string: "https://api.github.com/user")
+    let request = NSMutableURLRequest(URL: url!)
+    request.setValue("token \(self.accessToken!)", forHTTPHeaderField: "Authorization")
+    let dataTask = self.urlSession.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+      if error == nil{
+        if let httpResponse = response as? NSHTTPURLResponse {
+          var users = [User]()
+          switch httpResponse.statusCode {
+          case 200...299:
+            println("200 OK for fetch Authenticated User")
+            if let jsonDict = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [String : AnyObject] {
+              println(jsonDict)
+                let user = User(jsonDictionary: jsonDict)
+                users.append(user)
+            }
+            if (users.count > 0) {
+              NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                completionHandler(users, nil)
+              })
+            }else{
+              NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                completionHandler(nil, "No search results returned")
+              })
+            }
+          default:
+            println("something broke in NetworkController fetching users")
+            println("Status code was \(httpResponse.statusCode)")
+          }
+        }
+      }else{
+        let alert = UIAlertView(title: "Error", message: "Fetch Authenticated User Returned an error!", delegate: self, cancelButtonTitle: "Shite!")
+      }
+    })
+    dataTask.resume()
+
+  }
+  
+  /*
+  func fetchReposForUser(userName: String, completionHandler: ([Repository]?, String?) -> Void){
+    ///users/:username/repos
+    let url = NSURL(string: "https://api.github.com/users/\(userName)/repos")
+    let request = NSMutableURLRequest(URL: url!)
+    request.setValue("token \(self.accessToken!)", forHTTPHeaderField: "Authorization")
+    let dataTask = self.urlSession.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+      if error == nil {
+        if let httpResponse = response as? NSHTTPURLResponse {
+          var repos = [Repository]()
+          switch httpResponse.statusCode {
+          case 200...299:
+            if let jsonArray = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [AnyObject]{
+              for object in jsonArray{
+                if let jsonDictionary = object as? [String : AnyObject]{
+                  let repo = Repository(jsonDictionary)
+                  repos.append(repo)
+                }
+              }
+            }
+            if (repos.count > 0) {
+              NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                completionHandler(repos, nil)
+              })
+            }else{
+              NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                completionHandler(nil, "No search results returned")
+              })
+            }
+          default:
+            println("something broke in NetworkController fetching repo search terms")
+            println("Status code was \(httpResponse.statusCode)")
+          }
+        }
+        
+      }
+    })
+    dataTask.resume()
+    
+  }
+*/
   
 }
 

@@ -20,8 +20,6 @@ class MenuController: UITableViewController, UITableViewDelegate, UITextFieldDel
     override func viewDidLoad() {
       super.viewDidLoad()
       self.repoTextField.delegate = self
-
-      
       
       // changing color
       self.view.backgroundColor = UIColor.lightGrayColor()
@@ -62,11 +60,11 @@ class MenuController: UITableViewController, UITableViewDelegate, UITextFieldDel
       let destinationVC = segue.destinationViewController as RepositoryController
       destinationVC.incomingSearchTerm = self.repoTextField.text?
     }
-    
+    if segue.identifier == "SHOW_AUTH_USER"{
+      println("fetch authenticated user about to fire in Menu Controller")
+      let destinationVC = segue.destinationViewController as UserDetailController
+    }
 
-
-    
-    
   }
   
   
