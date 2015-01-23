@@ -11,7 +11,7 @@ import UIKit
 class ToUserDetailAnimationController: NSObject , UIViewControllerAnimatedTransitioning {
   
   func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
-    return 1.0
+    return 1.8
   }
   
   

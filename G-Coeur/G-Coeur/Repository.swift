@@ -14,6 +14,7 @@ struct Repository {
   let ownerDict : [String : AnyObject]!
   let ownerID : String?
   let language : String!
+  let url : NSURL!
 
   
   init(_ jsonDictionary : [String : AnyObject]){
@@ -21,6 +22,7 @@ struct Repository {
     self.ownerDict = jsonDictionary["owner"] as? Dictionary
     self.ownerID = ownerDict["id"] as? String
     self.language = jsonDictionary["language"] as? String
+    self.url = NSURL(string: jsonDictionary["html_url"] as String!)
     
 //   self.name = itemsDict["]
 }

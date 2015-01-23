@@ -21,6 +21,12 @@ class MenuController: UITableViewController, UITableViewDelegate, UITextFieldDel
       super.viewDidLoad()
       self.repoTextField.delegate = self
 
+      
+      
+      // changing color
+      self.view.backgroundColor = UIColor.lightGrayColor()
+
+      
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -28,10 +34,13 @@ class MenuController: UITableViewController, UITableViewDelegate, UITextFieldDel
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
+
   override func viewDidAppear(animated: Bool) {
     if NetworkController.sharedNetworkController.accessToken == nil {
       NetworkController.sharedNetworkController.requestAccessToken()
     }
+    // to fix the zombie nav controller delegate problem
+    self.navigationController?.delegate = nil
   }
 
     // MARK: - Table view data source
@@ -60,17 +69,14 @@ class MenuController: UITableViewController, UITableViewDelegate, UITextFieldDel
     
   }
   
-  func textFieldDidEndEditing(textField: UITextField) {
-    repoTextField.resignFirstResponder()
-    self.repoSearch = repoTextField.text
-   // self.prepareForSegue(<#segue: UIStoryboardSegue#>, sender: <#AnyObject?#>)
-  }
   
   func textFieldShouldReturn(textField: UITextField) -> Bool {
     self.repoSearch = repoTextField.text
     repoTextField.resignFirstResponder()
     let repoSearchVC = self.storyboard?.instantiateViewControllerWithIdentifier("REPO_SEARCH") as RepositoryController
-    repoSearchVC.incomingSearchTerm = repoTextField.text
+    if repoTextField.text.validForURL(){
+      repoSearchVC.incomingSearchTerm = repoTextField.text
+    }
     self.navigationController?.pushViewController(repoSearchVC, animated: true)
     return true
   }

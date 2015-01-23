@@ -23,7 +23,9 @@ class SearchUsersController:UIViewController, UICollectionViewDataSource, UISear
     self.collectionView.dataSource = self
     self.searchBar.delegate = self
     self.navigationController?.delegate = self
-    //other things?
+    
+    // changing color
+    self.view.backgroundColor = UIColor.lightGrayColor()
   }
   
   
@@ -56,6 +58,10 @@ class SearchUsersController:UIViewController, UICollectionViewDataSource, UISear
       }
     })
   }
+  
+  func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+    return text.validForURL()
+  }
   //MARK: Prepare for Segue
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     let destinationVC = segue.destinationViewController as UserDetailController
@@ -66,10 +72,11 @@ class SearchUsersController:UIViewController, UICollectionViewDataSource, UISear
 //MARK: NavigationBarDelegate
   func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     
-    if toVC is UserDetailController{
+    if toVC is UserDetailController {
       return ToUserDetailAnimationController()
     }
     
     return nil
   }
+
 }

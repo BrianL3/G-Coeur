@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA56EC4F1A71A92B00BE3A49 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56EC4E1A71A92B00BE3A49 /* Extensions.swift */; };
+		FA56EC511A71B11C00BE3A49 /* RepoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56EC501A71B11C00BE3A49 /* RepoDetailViewController.swift */; };
 		FA71D3911A704AE20012CB77 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA71D3901A704AE20012CB77 /* User.swift */; };
 		FA71D3931A704CEA0012CB77 /* SearchUsersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA71D3921A704CEA0012CB77 /* SearchUsersController.swift */; };
 		FA71D3951A704DE90012CB77 /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA71D3941A704DE90012CB77 /* UserCollectionViewCell.swift */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FA56EC4E1A71A92B00BE3A49 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		FA56EC501A71B11C00BE3A49 /* RepoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoDetailViewController.swift; sourceTree = "<group>"; };
 		FA71D3901A704AE20012CB77 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FA71D3921A704CEA0012CB77 /* SearchUsersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchUsersController.swift; sourceTree = "<group>"; };
 		FA71D3941A704DE90012CB77 /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -143,6 +147,7 @@
 			children = (
 				FAAC37871A6DAADE0029C614 /* Repository.swift */,
 				FA71D3901A704AE20012CB77 /* User.swift */,
+				FA56EC4E1A71A92B00BE3A49 /* Extensions.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -161,6 +166,7 @@
 				FA71D38F1A704AB80012CB77 /* Animation Controllers */,
 				FAAC37851A6DA3660029C614 /* MenuController.swift */,
 				FAAC37891A6DACEC0029C614 /* NetworkController.swift */,
+				FA56EC501A71B11C00BE3A49 /* RepoDetailViewController.swift */,
 				FAAC378B1A6DAFA20029C614 /* RepositoryController.swift */,
 				FA71D3921A704CEA0012CB77 /* SearchUsersController.swift */,
 				FA71D3961A70602C0012CB77 /* UserDetailController.swift */,
@@ -273,10 +279,12 @@
 				FA71D3911A704AE20012CB77 /* User.swift in Sources */,
 				FA71D3971A70602C0012CB77 /* UserDetailController.swift in Sources */,
 				FAAC37861A6DA3660029C614 /* MenuController.swift in Sources */,
+				FA56EC511A71B11C00BE3A49 /* RepoDetailViewController.swift in Sources */,
 				FAAC37631A6DA2170029C614 /* AppDelegate.swift in Sources */,
 				FA71D3951A704DE90012CB77 /* UserCollectionViewCell.swift in Sources */,
 				FA71D3931A704CEA0012CB77 /* SearchUsersController.swift in Sources */,
 				FAAC37881A6DAADE0029C614 /* Repository.swift in Sources */,
+				FA56EC4F1A71A92B00BE3A49 /* Extensions.swift in Sources */,
 				FA71D3991A70666E0012CB77 /* ToUserDetailAnimationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

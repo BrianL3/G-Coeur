@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserDetailController: UIViewController, UITableViewDataSource {
+class UserDetailController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
   var user : User!
   var userRepos = [Repository]()
@@ -18,7 +18,7 @@ class UserDetailController: UIViewController, UITableViewDataSource {
   @IBOutlet weak var avatarImageView: UIImageView!
   
   @IBOutlet weak var tableView: UITableView!
-  
+//MARK: ViewController Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.avatarImageView.image = user.image!
@@ -26,6 +26,10 @@ class UserDetailController: UIViewController, UITableViewDataSource {
       
       //set self as tableview delegate
       self.tableView.dataSource = self
+      self.tableView.delegate = self
+      
+      // changing color
+      self.view.backgroundColor = UIColor.lightGrayColor()
         
       //grab the user's repos
       NetworkController.sharedNetworkController.fetchReposForUser(user.login, completionHandler: { (repos, error) -> Void in
@@ -57,14 +61,20 @@ class UserDetailController: UIViewController, UITableViewDataSource {
     return userRepos.count
   }
   
-    /*
-    // MARK: - Navigation
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    println("Row selected")
+  }
+  
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // MARK: - Navigation
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if segue.identifier == "SHOW_REPO_FROM_USER"{
+      let destinationVC = segue.destinationViewController as RepoDetailViewController
+      let selectedIndexPath = self.tableView.indexPathsForSelectedRows()!.first as NSIndexPath
+      let selectedRepo = userRepos[selectedIndexPath.row] as Repository
+      destinationVC.url = selectedRepo.url
     }
-    */
+}
+
 
 }

@@ -29,6 +29,7 @@ class RepositoryController : UIViewController, UITableViewDataSource, UITableVie
     
     //if we got a search term from the previous VC, load it up
     if incomingSearchTerm != nil {
+      if incomingSearchTerm!.validForURL(){
       searchBar.text = self.incomingSearchTerm
       NetworkController.sharedNetworkController.fetchRepositoriesForSearchTerm(self.incomingSearchTerm!) { (returnedArray, error) -> () in
         if error == nil {
@@ -37,6 +38,7 @@ class RepositoryController : UIViewController, UITableViewDataSource, UITableVie
           self.tableView.reloadData()
         }else{
           println("returned an error")
+        }
         }
       }
     } else {
@@ -75,6 +77,18 @@ class RepositoryController : UIViewController, UITableViewDataSource, UITableVie
       }else{
         println("returned an error")
       }
+    }
+  }
+  func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+    return text.validForURL()
+  }
+  //prepare for segue
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if segue.identifier == "SHOW_REPO"{
+      let destinationVC = segue.destinationViewController as RepoDetailViewController
+      let selectedIndexPath = self.tableView.indexPathsForSelectedRows()!.first as NSIndexPath
+      let selectedRepo = repos[selectedIndexPath.row] as Repository
+      destinationVC.url = selectedRepo.url
     }
   }
   
