@@ -22,7 +22,7 @@ struct Repository {
     self.ownerDict = jsonDictionary["owner"] as? Dictionary
     self.ownerID = ownerDict["id"] as? String
     self.language = jsonDictionary["language"] as? String
-    self.url = NSURL(string: jsonDictionary["html_url"] as String!)
+    self.url = NSURL(string: jsonDictionary["html_url"] as! String!)
     
 //   self.name = itemsDict["]
 }

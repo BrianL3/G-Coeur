@@ -12,13 +12,7 @@ import UIKit
 class NetworkController{
   
   // Singleton for the network controller
-  class var sharedNetworkController : NetworkController {
-    struct Static {
-      static let instance : NetworkController = NetworkController()
-    }
-    return Static.instance
-  }
-  
+  static let sharedNetworkController = NetworkController()
   var urlSession : NSURLSession!
   let clientSecret = "10da1bbdb897fd885734283e80cc6d67c4e1947c"
   let clientID = "ffa5ddfc3f169df9305d"
@@ -76,11 +70,11 @@ class NetworkController{
           switch httpResponse.statusCode{
           case 200...299:
             //println("Status 200 OK")
-            let tokenResponse = NSString(data: data, encoding: NSASCIIStringEncoding)
+            let tokenResponse = NSString(data: data!, encoding: NSASCIIStringEncoding)
             //println("check where to split token response in order to get only the authToken: \(tokenResponse)")
             
             //splitting the token response
-            let accessTokenComponent = tokenResponse?.componentsSeparatedByString("&").first as String
+            let accessTokenComponent = (tokenResponse?.componentsSeparatedByString("&").first)!
             let accessToken = accessTokenComponent.componentsSeparatedByString("=").last
             //println("Check Access Token \(accessToken)")
             
@@ -88,10 +82,10 @@ class NetworkController{
             NSUserDefaults.standardUserDefaults().setObject(accessToken!, forKey: self.accessTokenUserDefaultsKey)
             NSUserDefaults.standardUserDefaults().synchronize()
           case 500...599:
-            println("GitHub is down")
+            print("GitHub is down")
           default:
-            println("hit default case")
-            println(httpResponse.statusCode)
+            print("hit default case")
+            print(httpResponse.statusCode)
           }
         }
       }
@@ -109,7 +103,7 @@ class NetworkController{
           var repos = [Repository]()
           switch httpResponse.statusCode {
           case 200...299:
-            if let jsonDict = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [String : AnyObject] {
+            if let jsonDict = (try? NSJSONSerialization.JSONObjectWithData(data!, options: [])) as? [String : AnyObject] {
               if let itemsArray = jsonDict["items"] as? [AnyObject]{
                 for object in itemsArray{
                   if let jsonDict = object as? [String : AnyObject] {
@@ -130,8 +124,8 @@ class NetworkController{
               })
             }
           default:
-            println("something broke in NetworkController fetching repo search terms")
-            println("Status code was \(httpResponse.statusCode)")
+            print("something broke in NetworkController fetching repo search terms")
+            print("Status code was \(httpResponse.statusCode)")
           }
         }
         
@@ -161,7 +155,7 @@ class NetworkController{
           var repos = [Repository]()
           switch httpResponse.statusCode {
           case 200...299:
-            if let jsonArray = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [AnyObject]{
+            if let jsonArray = (try? NSJSONSerialization.JSONObjectWithData(data!, options: [])) as? [AnyObject]{
               for object in jsonArray{
                 if let jsonDictionary = object as? [String : AnyObject]{
                   let repo = Repository(jsonDictionary)
@@ -179,8 +173,8 @@ class NetworkController{
               })
             }
           default:
-            println("something broke in NetworkController fetching repo search terms")
-            println("Status code was \(httpResponse.statusCode)")
+            print("something broke in NetworkController fetching repo search terms")
+            print("Status code was \(httpResponse.statusCode)")
           }
         }
         
@@ -201,7 +195,7 @@ class NetworkController{
           var users = [User]()
           switch httpResponse.statusCode {
           case 200...299:
-            if let jsonDict = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [String : AnyObject] {
+            if let jsonDict = (try? NSJSONSerialization.JSONObjectWithData(data!, options: [])) as? [String : AnyObject] {
               if let itemsArray = jsonDict["items"] as? [AnyObject]{
                 for object in itemsArray{
                   if let jsonDict = object as? [String : AnyObject] {
@@ -222,12 +216,11 @@ class NetworkController{
               })
             }
           default:
-            println("something broke in NetworkController fetching users")
-            println("Status code was \(httpResponse.statusCode)")
+            completionHandler(nil, "something broke in NetworkController fetching users, Status code was \(httpResponse.statusCode)")
           }
         }
       }else{
-        let alert = UIAlertView(title: "Error", message: "Fetch Users for Search Term Returned an error!", delegate: self, cancelButtonTitle: "Shite!")
+        completionHandler(nil, "Fetch Users for Search Term Returned an error!")
       }
     })
     dataTask.resume()
@@ -257,9 +250,9 @@ class NetworkController{
           var users = [User]()
           switch httpResponse.statusCode {
           case 200...299:
-            println("200 OK for fetch Authenticated User")
-            if let jsonDict = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [String : AnyObject] {
-              println(jsonDict)
+            print("200 OK for fetch Authenticated User")
+            if let jsonDict = (try? NSJSONSerialization.JSONObjectWithData(data!, options: [])) as? [String : AnyObject] {
+              print(jsonDict)
                 let user = User(jsonDictionary: jsonDict)
                 users.append(user)
             }
@@ -273,66 +266,14 @@ class NetworkController{
               })
             }
           default:
-            println("something broke in NetworkController fetching users")
-            println("Status code was \(httpResponse.statusCode)")
+            completionHandler(nil, "Error, Status code was \(httpResponse.statusCode)")
           }
         }
       }else{
-        let alert = UIAlertView(title: "Error", message: "Fetch Authenticated User Returned an error!", delegate: self, cancelButtonTitle: "Shite!")
+        completionHandler(nil, "Fetch Authenticated User Returned an error!")
       }
     })
     dataTask.resume()
 
   }
-  
-  /*
-  func fetchReposForUser(userName: String, completionHandler: ([Repository]?, String?) -> Void){
-    ///users/:username/repos
-    let url = NSURL(string: "https://api.github.com/users/\(userName)/repos")
-    let request = NSMutableURLRequest(URL: url!)
-    request.setValue("token \(self.accessToken!)", forHTTPHeaderField: "Authorization")
-    let dataTask = self.urlSession.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
-      if error == nil {
-        if let httpResponse = response as? NSHTTPURLResponse {
-          var repos = [Repository]()
-          switch httpResponse.statusCode {
-          case 200...299:
-            if let jsonArray = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [AnyObject]{
-              for object in jsonArray{
-                if let jsonDictionary = object as? [String : AnyObject]{
-                  let repo = Repository(jsonDictionary)
-                  repos.append(repo)
-                }
-              }
-            }
-            if (repos.count > 0) {
-              NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                completionHandler(repos, nil)
-              })
-            }else{
-              NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                completionHandler(nil, "No search results returned")
-              })
-            }
-          default:
-            println("something broke in NetworkController fetching repo search terms")
-            println("Status code was \(httpResponse.statusCode)")
-          }
-        }
-        
-      }
-    })
-    dataTask.resume()
-    
-  }
-*/
-  
 }
-
-
-
-
-
-
-
-

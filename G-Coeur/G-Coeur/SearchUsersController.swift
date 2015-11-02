@@ -31,7 +31,7 @@ class SearchUsersController:UIViewController, UICollectionViewDataSource, UISear
   
 //MARK: CollectionView DataSource
   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCellWithReuseIdentifier("USER_CELL", forIndexPath: indexPath) as UserCollectionViewCell
+    let cell = collectionView.dequeueReusableCellWithReuseIdentifier("USER_CELL", forIndexPath: indexPath) as! UserCollectionViewCell
     var selectedUser = self.users[indexPath.row]
     cell.avatarImage.image = nil
     NetworkController.sharedNetworkController.fetchUserAvatar(selectedUser.avatarURL, completionHandler: { (image) -> Void in
@@ -49,12 +49,13 @@ class SearchUsersController:UIViewController, UICollectionViewDataSource, UISear
 //MARK: SearchBar Delegate
   func searchBarSearchButtonClicked(searchBar: UISearchBar) {
     // fire network controller's search function
-    NetworkController.sharedNetworkController.fetchUsersForSearchTerm(searchBar.text, completionHandler: { (users, error) -> Void in
+    guard let text = searchBar.text else {return}
+    NetworkController.sharedNetworkController.fetchUsersForSearchTerm(text, completionHandler: { (users, error) -> Void in
       if error == nil{
         self.users = users!
         self.collectionView.reloadData()
       }else{
-        println("returned an error in SearchUsersVC: \(error)")
+        print("returned an error in SearchUsersVC: \(error)")
       }
     })
   }
@@ -64,9 +65,10 @@ class SearchUsersController:UIViewController, UICollectionViewDataSource, UISear
   }
   //MARK: Prepare for Segue
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    let destinationVC = segue.destinationViewController as UserDetailController
-    let selectedIndexPath = self.collectionView.indexPathsForSelectedItems().first as NSIndexPath
-    destinationVC.user = users[selectedIndexPath.row]
+    let destinationVC = segue.destinationViewController as! UserDetailController
+    if let selectedIndexPath = self.collectionView.indexPathsForSelectedItems()!.first {
+        destinationVC.user = users[selectedIndexPath.row]
+    }
     
   }
 //MARK: NavigationBarDelegate

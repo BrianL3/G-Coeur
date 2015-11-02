@@ -10,22 +10,22 @@ import UIKit
 
 class ToUserDetailAnimationController: NSObject , UIViewControllerAnimatedTransitioning {
   
-  func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
+  func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
     return 1.8
   }
   
   
   func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
     // reference the to- and from- ViewControllers
-    let fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as SearchUsersController
-    let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as UserDetailController
+    let fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as! SearchUsersController
+    let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as! UserDetailController
     
     //create a container view, the transition zone between VCs
     let containerView = transitionContext.containerView()
     
     //make the usual preparations for segue: pass the selected user, etc.
-    let selectedIndexPath = fromVC.collectionView.indexPathsForSelectedItems().first as NSIndexPath
-    let cell = fromVC.collectionView.cellForItemAtIndexPath(selectedIndexPath) as UserCollectionViewCell
+    guard let selectedIndexPath = (fromVC.collectionView.indexPathsForSelectedItems()?.first? else { retur)!n }
+    guard let cell : UserCollectionViewCell = fromVC.collectionView.cellForItemAtIndexPath(selectedIndexPath!) else {return}
     toVC.user = fromVC.users[selectedIndexPath.row]
     
     //take a snapshot of the selected cell
@@ -40,8 +40,8 @@ class ToUserDetailAnimationController: NSObject , UIViewControllerAnimatedTransi
     toVC.avatarImageView.hidden = true
     toVC.nameLabel.hidden = true
     //adding
-    containerView.addSubview(toVC.view)
-    containerView.addSubview(snapshotOfCell)
+    containerView!.addSubview(toVC.view)
+    containerView!.addSubview(snapshotOfCell)
     
     //give AutoLayout the opportunity to make any adjustments needed
     toVC.view.setNeedsLayout()
@@ -54,7 +54,7 @@ class ToUserDetailAnimationController: NSObject , UIViewControllerAnimatedTransi
     //begin animation code
     // =============
     
-    UIView.animateKeyframesWithDuration(duration, delay: 0.0, options: nil, animations: { () -> Void in
+    UIView.animateKeyframesWithDuration(duration, delay: 0.0, options: [], animations: { () -> Void in
       UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.5, animations: { () -> Void in
         toVC.view.alpha = 0.5
         snapshotOfCell.center = containerView.center
@@ -62,8 +62,9 @@ class ToUserDetailAnimationController: NSObject , UIViewControllerAnimatedTransi
       })
         UIView.addKeyframeWithRelativeStartTime(0.5, relativeDuration: 0.5, animations: { () -> Void in
           toVC.view.alpha = 1.0
-          let frame = containerView.convertRect(toVC.avatarImageView.frame, fromView: toVC.view)
-          snapshotOfCell.frame = frame
+            if let frame = containerView!.convertRect(toVC.avatarImageView.frame, fromView: toVC.view) {
+                snapshotOfCell.frame = frame
+            }
         })
     }) { (finished) -> Void in
       

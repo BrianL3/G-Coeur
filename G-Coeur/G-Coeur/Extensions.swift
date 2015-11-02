@@ -11,12 +11,12 @@ import Foundation
 extension String {
   
   func validForURL() -> Bool {
-    let regex = NSRegularExpression(pattern: "[^0-9a-zA-Z\n\\-]", options: nil, error: nil)
+    let regex = try? NSRegularExpression(pattern: "[^0-9a-zA-Z\n\\-]", options: [])
     
-    let elements = countElements(self)
+    let elements = self.characters.count
     let range = NSMakeRange(0, elements)
     
-    let matches = regex?.numberOfMatchesInString(self, options: nil, range: range)
+    let matches = regex?.numberOfMatchesInString(self, options: [], range: range)
     
     if matches > 0 {
       return false

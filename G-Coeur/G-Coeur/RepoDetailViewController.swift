@@ -20,14 +20,14 @@ class RepoDetailViewController: UIViewController {
       
       self.webView = WKWebView(frame: rootView.frame)
 
-      self.webView.setTranslatesAutoresizingMaskIntoConstraints(false)
+      self.webView.translatesAutoresizingMaskIntoConstraints = false
       rootView.addSubview(webView)
       let views = ["webView" : self.webView]
       // setting webview to autolayout to edge of screen (horizontral)
-      let webViewConstraintHorizontal = NSLayoutConstraint.constraintsWithVisualFormat("H:|[webView]|", options: nil, metrics: nil, views: views)
+      let webViewConstraintHorizontal = NSLayoutConstraint.constraintsWithVisualFormat("H:|[webView]|", options: [], metrics: nil, views: views)
       rootView.addConstraints(webViewConstraintHorizontal)
       // ditto but vertical
-      let webViewConstraintVertical = NSLayoutConstraint.constraintsWithVisualFormat("V:|[webView]|", options: nil, metrics: nil, views: views)
+      let webViewConstraintVertical = NSLayoutConstraint.constraintsWithVisualFormat("V:|[webView]|", options: [], metrics: nil, views: views)
       rootView.addConstraints(webViewConstraintVertical)
       
 

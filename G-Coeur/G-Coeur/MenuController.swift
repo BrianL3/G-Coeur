@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MenuController: UITableViewController, UITableViewDelegate, UITextFieldDelegate {
+class MenuController: UITableViewController, UITextFieldDelegate {
 
   @IBOutlet weak var repoTextField: UITextField!
   var repoSearch : String?
@@ -57,12 +57,12 @@ class MenuController: UITableViewController, UITableViewDelegate, UITextFieldDel
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "SEARCH_REPO"{
-      let destinationVC = segue.destinationViewController as RepositoryController
-      destinationVC.incomingSearchTerm = self.repoTextField.text?
+      let destinationVC = segue.destinationViewController as! RepositoryController
+      destinationVC.incomingSearchTerm = self.repoTextField.text
     }
     if segue.identifier == "SHOW_AUTH_USER"{
-      println("fetch authenticated user about to fire in Menu Controller")
-      let destinationVC = segue.destinationViewController as UserDetailController
+      print("fetch authenticated user about to fire in Menu Controller")
+      let _ = segue.destinationViewController as! UserDetailController
     }
 
   }
@@ -71,9 +71,11 @@ class MenuController: UITableViewController, UITableViewDelegate, UITextFieldDel
   func textFieldShouldReturn(textField: UITextField) -> Bool {
     self.repoSearch = repoTextField.text
     repoTextField.resignFirstResponder()
-    let repoSearchVC = self.storyboard?.instantiateViewControllerWithIdentifier("REPO_SEARCH") as RepositoryController
-    if repoTextField.text.validForURL(){
-      repoSearchVC.incomingSearchTerm = repoTextField.text
+    let repoSearchVC = self.storyboard?.instantiateViewControllerWithIdentifier("REPO_SEARCH") as! RepositoryController
+    if let textIsValid = repoTextField.text?.validForURL(){
+        if textIsValid {
+            repoSearchVC.incomingSearchTerm = repoTextField.text
+        }
     }
     self.navigationController?.pushViewController(repoSearchVC, animated: true)
     return true

@@ -34,11 +34,11 @@ class RepositoryController : UIViewController, UITableViewDataSource, UITableVie
       searchBar.text = self.incomingSearchTerm
       NetworkController.sharedNetworkController.fetchRepositoriesForSearchTerm(self.incomingSearchTerm!) { (returnedArray, error) -> () in
         if error == nil {
-          println("fired")
+          print("fired")
           self.repos = returnedArray!
           self.tableView.reloadData()
         }else{
-          println("returned an error")
+          print("returned an error")
         }
         }
       }
@@ -51,7 +51,7 @@ class RepositoryController : UIViewController, UITableViewDataSource, UITableVie
   
   //MARK: TableViewDataSource
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("REPO_CELL") as UITableViewCell
+    let cell = tableView.dequeueReusableCellWithIdentifier("REPO_CELL")! as UITableViewCell
     let repo = repos[indexPath.row]
     cell.textLabel?.text = repo.name
     cell.detailTextLabel?.text = repo.language
@@ -71,13 +71,15 @@ class RepositoryController : UIViewController, UITableViewDataSource, UITableVie
   func searchBarSearchButtonClicked(searchBar: UISearchBar) {
     tableView.reloadData()
     searchBar.resignFirstResponder()
-    NetworkController.sharedNetworkController.fetchRepositoriesForSearchTerm(searchBar.text) { (returnedArray, error) -> () in
-      if error == nil {
-        println(searchBar.text)
-        self.repos = returnedArray!
-      }else{
-        println("returned an error")
-      }
+    if let text = searchBar.text {
+        NetworkController.sharedNetworkController.fetchRepositoriesForSearchTerm(text) { (returnedArray, error) -> () in
+            if error == nil {
+                print(searchBar.text)
+                self.repos = returnedArray!
+            }else{
+                print("returned an error")
+            }
+        }
     }
   }
   func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
@@ -86,10 +88,11 @@ class RepositoryController : UIViewController, UITableViewDataSource, UITableVie
   //prepare for segue
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "SHOW_REPO"{
-      let destinationVC = segue.destinationViewController as RepoDetailViewController
-      let selectedIndexPath = self.tableView.indexPathsForSelectedRows()!.first as NSIndexPath
-      let selectedRepo = repos[selectedIndexPath.row] as Repository
-      destinationVC.url = selectedRepo.url
+      let destinationVC = segue.destinationViewController as! RepoDetailViewController
+        if let selectedIndexPath = self.tableView.indexPathsForSelectedRows?.first {
+            let selectedRepo = repos[selectedIndexPath.row] as Repository
+            destinationVC.url = selectedRepo.url
+        }
     }
   }
   

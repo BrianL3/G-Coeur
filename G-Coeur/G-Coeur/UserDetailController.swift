@@ -24,7 +24,7 @@ class UserDetailController: UIViewController, UITableViewDataSource, UITableView
       if self.user == nil{
         NetworkController.sharedNetworkController.fetchAuthenticatedUser({ (users, error) -> () in
           if error == nil{
-            println("fetch authenticated user fired wihout error in Menu Controller")
+            print("fetch authenticated user fired wihout error in Menu Controller")
             let userArray = users!
             var currentUser = userArray[0] as User
             NetworkController.sharedNetworkController.fetchUserAvatar(currentUser.avatarURL, completionHandler: { (image) -> Void in
@@ -32,7 +32,7 @@ class UserDetailController: UIViewController, UITableViewDataSource, UITableView
             })
             self.user = currentUser
           }else{
-            println("detailedUserview call to fetchAuthenticatedUser failed")
+            print("detailedUserview call to fetchAuthenticatedUser failed")
           }
         })
       }
@@ -46,7 +46,7 @@ class UserDetailController: UIViewController, UITableViewDataSource, UITableView
             self.userRepos = repos!
             self.tableView.reloadData()
           }else{
-            println("returned an error")
+            print("returned an error")
           }
         })
       }
@@ -79,17 +79,18 @@ class UserDetailController: UIViewController, UITableViewDataSource, UITableView
   }
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    println("Row selected")
+    print("Row selected")
   }
   
 
     // MARK: - Navigation
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "SHOW_REPO_FROM_USER"{
-      let destinationVC = segue.destinationViewController as RepoDetailViewController
-      let selectedIndexPath = self.tableView.indexPathsForSelectedRows()!.first as NSIndexPath
-      let selectedRepo = userRepos[selectedIndexPath.row] as Repository
-      destinationVC.url = selectedRepo.url
+      let destinationVC = segue.destinationViewController as! RepoDetailViewController
+        if let selectedIndexPath = self.tableView.indexPathsForSelectedRows?.first {
+            let selectedRepo = userRepos[selectedIndexPath.row] as Repository
+            destinationVC.url = selectedRepo.url
+        }
     }
 }
 

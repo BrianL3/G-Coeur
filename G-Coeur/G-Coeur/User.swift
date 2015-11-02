@@ -16,17 +16,17 @@ struct User {
   
   init(jsonDictionary: [String : AnyObject]){
     if jsonDictionary["login"] != nil {
-      self.login = jsonDictionary["login"] as String
+      self.login = jsonDictionary["login"] as! String
     }else{
       self.login = "failed to serialize"
     }
     if jsonDictionary["avatar_url"] != nil{
-      self.avatarURL = NSURL(string: jsonDictionary["avatar_url"] as String)
+      self.avatarURL = NSURL(string: jsonDictionary["avatar_url"] as! String)
     }else{
-      
+      self.avatarURL = NSURL(string: "error")
     }
     if jsonDictionary["score"] != nil{
-        self.score = jsonDictionary["score"] as Float
+        self.score = jsonDictionary["score"] as! Float
     }else{
       self.score = 0.0
     }
